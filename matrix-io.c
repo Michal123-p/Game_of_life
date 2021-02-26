@@ -12,19 +12,19 @@ Matrix* readFromFile( char *filename) {
 	Matrix *mat = NULL;
 	
 	if (in != NULL) {
-		fscanf(in,"%d","%d", &row, &col);
+		fscanf(in,"%2d", &row, &col);
 		mat = createMatrix(row,col);
 		if (mat != NULL) {
-		    for(rowi; rowi < row;rowi++) {
-		         for(coli; coli < col; coli++) 
-			    fscanf(in, "%d", &(mat->data[rowi][coli]));
-						 }
+		    for(rowi = 0; rowi < row; rowi++) {
+                for(coli = 0; coli < col; coli++)
+                    fscanf(in, "%d", &(mat -> data[rowi][coli]) );
+                }
 		} else {
-			fprintf(stderr,"Błąd podczas tworzenia macierzy rozmiarów  %d x %d", row,col);
-	
+			fprintf(stderr,"Błąd podczas tworzenia macierzy rozmiarów  %d x %d", row, col);
 		} 
 
-	fclose(in);	}
+        fclose(in);
+    }
 	else {
 		fprintf(stderr,"Błąd w otwarciu pliku: %s\n", filename);
 	}
