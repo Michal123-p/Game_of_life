@@ -2,17 +2,17 @@
 #include <stdio.h>
 #include "matrix-io.h"
 
-Matrix* readFromFile( char *filename) {
+Mat* readFromFile( char *filename) {
 
 	// row to wiersze, col to kolumny, i to iteratory po kolumnach i wierszach
 	// Oczekuje wartości int.
-	int row, col;
+	int row = 0, col = 0;
 	int rowi, coli;
 	FILE *in = fopen(filename, "r");
-	Matrix *mat = NULL;
+	Mat *mat = NULL;
 	
 	if (in != NULL) {
-		fscanf(in,"%2d", &row, &col);
+		fscanf(in,"%d %d", &row, &col);
 		mat = createMatrix(row,col);
 		if (mat != NULL) {
 		    for(rowi = 0; rowi < row; rowi++) {
@@ -31,7 +31,7 @@ Matrix* readFromFile( char *filename) {
 	return mat;
 }
 
-void freeMatrix(Matrix *mat) {
+void freeMatrix(Mat *mat) {
 	int i;
 	for(i=0; i< mat->row; i++)
 		free(mat->data[i]);
@@ -39,9 +39,9 @@ void freeMatrix(Matrix *mat) {
 	free(mat);
 }
 
-Matrix* createMatrix(int r, int c) {
+Mat* createMatrix(int r, int c) {
 	int i;
-	Matrix *mat = (Matrix*) malloc(sizeof(Matrix));
+	Mat *mat = (Mat*) malloc(sizeof(Mat));
 	if(mat != NULL) {
 	    mat->row = r;
 	    mat->col = c;
@@ -52,9 +52,3 @@ Matrix* createMatrix(int r, int c) {
 	    }
 	return mat;
 }
-
-
-
-
-
-

@@ -12,3 +12,10 @@ Matrix* createMatrix(int row, int col);
 void freeMatrix(Matrix *mat);
 
 void saveImage(Matrix *mat);
+
+
+int countAliveCells (Matrix *mat, int x, int y);
+ 
+Matrix* updateMatrix (Matrix *mat);
+
+Matrix* fixMatrix (Matrix *mat);

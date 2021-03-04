@@ -1,14 +1,18 @@
+#ifndef _MATRIX_IO_H
+#define _MATRIX_IO_H
 
 typedef struct Matrix {
 	int row,col;
 	int **data;
 
-} Matrix;
+} Mat;
 
-Matrix *readFromFile(char *filename);
+Mat *readFromFile(char *filename);
 
-Matrix* createMatrix(int row, int col);
+Mat* createMatrix(int row, int col);
 
-void freeMatrix(Matrix *mat);
+void freeMatrix(Mat *mat);
 
-void saveImage(Matrix *mat);
+void saveImage(Mat *mat);
+
+#endif
