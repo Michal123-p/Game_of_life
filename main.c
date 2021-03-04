@@ -3,27 +3,31 @@
 #include "matrix-io.h"
 #include "actualize.h"
 
+#define N 25;
 
 void writeMatrix (FILE* out, Mat *mat);
 
 int main(int argc, char **argv) {
-	
-    /*
-	if(argc < 2) {
-		printf("Błędna liczba podawanych argumentów");
-		return 1;
-	}*/
-    Mat *mat = readFromFile(argv[1]);
-
-    FILE *out = argc > 2 ? fopen(argv[2], "w") : stdout;
-    if (out == NULL) {
-            fprintf(stderr, "%s: nie moge pisac do %s\n", argv[0], argv[2]);
-            return 2;
-    }
-    mat = updateMatrix (mat);
-    writeMatrix (out, mat);
     
-    fclose(out);
+    Mat *mat = readFromFile(argv[1]);
+    if (mat == NULL) {
+        fprintf(stderr, "Nie moge wczytac macierzy %s:\t", argv[1]);
+        return 2;
+    }
+    
+    int n = argc > 2 ? atoi(argv[2]) : N;
+    
+    char buf[20];
+    for(int i = 0; i < n; i++) {
+        snprintf(buf, 20, "file%d", i);
+        printf("%s", buf);
+        FILE *out = fopen(buf, "w");
+        mat = updateMatrix (mat);
+        writeMatrix (out, mat);
+        fclose(out);
+    }
+        
+    
 	return 0;
 
 }
@@ -41,3 +45,9 @@ void writeMatrix (FILE* out, Mat *mat) {
     }
 }
     
+/*
+ * funkcja compare - porównuje obecny stan i nowy
+ * plik actualize.c - compare
+ * matrix-io.c - writeMatrix
+ * main.c - generacja plików graficznych
+ */
