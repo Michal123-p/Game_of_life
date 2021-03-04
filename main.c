@@ -20,7 +20,6 @@ int main(int argc, char **argv) {
             fprintf(stderr, "%s: nie moge pisac do %s\n", argv[0], argv[2]);
             return 2;
     }
-    printf("Hello");
     mat = updateMatrix (mat);
     writeMatrix (out, mat);
     
@@ -30,17 +29,15 @@ int main(int argc, char **argv) {
 }
 
 void writeMatrix (FILE* out, Mat *mat) {
-    fprintf(out, "Hello");
     for (int i = 0; i < mat->row; i++) {
         for (int j = 0; j < mat->col; j++)
             fprintf(out, "%d ", mat->data[i][j]);
-        fprintf(out, "/n");
+        fprintf(out, "\n");
     }
-    printf("Hello");
     for (int i = 0; i < mat->row; i++) {
         for (int j = 0; j < mat->col; j++)
             printf("%d ", mat->data[i][j]);
-        printf("/n");
+        printf("\n");
     }
 }
     

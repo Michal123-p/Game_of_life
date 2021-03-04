@@ -1,8 +1,8 @@
 automat: main.o matrix-io.o actualize.o
-	gcc -Wall --pedantic -g automat main.o matrix-io.o actualize.o
+	gcc -Wall --pedantic -g -o automat main.o matrix-io.o actualize.o
 
 automat1:
-	gcc -Wall --pedantic *.c -o
+	gcc -Wall --pedantic *.c -o automat1
 
 actualize.o: actualize.h matrix-io.h
 
@@ -12,5 +12,5 @@ test1: automat
 	test file
 
 
-test:
-	./test1
+test_1: 
+	./automat1 test file3
