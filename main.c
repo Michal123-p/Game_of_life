@@ -8,8 +8,9 @@ int main(int argc, char **argv) {
 		printf("Błędna liczba podawanych argumentów");
 		return 1;
 	}
-	Matrix *mat = readFromFile(argv[1]);
 	
+	Matrix *mat = readFromFile(argv[1]);
+	printf("done /n");
 	
 	return 0;
 
