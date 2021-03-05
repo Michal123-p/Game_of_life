@@ -23,11 +23,16 @@ int main(int argc, char **argv) {
         printf("%s", buf);
         FILE *out = fopen(buf, "w");
         mat = updateMatrix (mat);
+    	fprintf(out,"P1\n#\n%d %d\n", mat->col,mat->row);
         writeMatrix (out, mat);
         fclose(out);
     }
-        
-    
+	// Dodanie jednego pliku w foramcie wyjściwoym
+        snprintf(buf, 20, "file%d", i);	
+        printf("%s", buf);
+        FILE *out = fopen(buf, "w");
+        writeMatrix (out, mat);
+        fclose(out);
 	return 0;
 
 }
