@@ -1,5 +1,5 @@
 automat:
-	gcc -Wall --pedantic *.c -o automat
+	gcc -Wall *.c -o automat
 
 actualize.o: actualize.h matrix-io.h
 

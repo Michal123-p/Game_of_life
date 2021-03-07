@@ -2,10 +2,11 @@
 #include <stdlib.h>
 #include "matrix-io.h"
 #include "actualize.h"
+#include <sys/stat.h>
+#include <string.h>
 
 #define N 25;
-
-void writeMatrix (FILE* out, Mat *mat);
+#define MAX_DIR 10000;
 
 int main(int argc, char **argv) {
     
@@ -14,41 +15,50 @@ int main(int argc, char **argv) {
         fprintf(stderr, "Nie moge wczytac macierzy %s:\t", argv[1]);
         return 2;
     }
-    
+    int i;
+    int dir = -1;
+    int max = MAX_DIR;
     int n = argc > 2 ? atoi(argv[2]) : N;
     
     char buf[20];
-    for(int i = 0; i < n; i++) {
-        snprintf(buf, 20, "file%d", i);
-        printf("%s", buf);
-        FILE *out = fopen(buf, "w");
+    char mkd[20];
+    char bufor[40];
+    for(i=0; i<max; i++) {
+	snprintf(mkd,20,"folder%d",i);
+	dir = mkdir(mkd,0777);
+	if (dir == 0)
+	    break;
+
+	}
+
+    for(i = 0; i < n; i++) {
+        snprintf(buf, 20, "/file%d.txt", i);
+	strcpy(bufor,mkd);
+	strcat(bufor,buf);
+	printf(bufor);
+	printf("\n");
+        FILE *out = fopen(bufor, "w");
         mat = updateMatrix (mat);
     	fprintf(out,"P1\n#\n%d %d\n", mat->col,mat->row);
         writeMatrix (out, mat);
         fclose(out);
+	bufor[0] = '\0';
     }
 	// Dodanie jednego pliku w foramcie wyjściwoym
-        snprintf(buf, 20, "file%d", i);	
-        printf("%s", buf);
-        FILE *out = fopen(buf, "w");
+        snprintf(buf, 20, "/file%d.txt", i);	
+	
+	strcpy(bufor,mkd);
+	strcat(bufor,buf);
+
+        printf("%s", bufor);
+        FILE *out = fopen(bufor, "w");
+    	fprintf(out,"%d %d\n", mat->col,mat->row);
         writeMatrix (out, mat);
-        fclose(out);
+        fclose(out); 
 	return 0;
-
+	
 }
 
-void writeMatrix (FILE* out, Mat *mat) {
-    for (int i = 0; i < mat->row; i++) {
-        for (int j = 0; j < mat->col; j++)
-            fprintf(out, "%d ", mat->data[i][j]);
-        fprintf(out, "\n");
-    }
-    for (int i = 0; i < mat->row; i++) {
-        for (int j = 0; j < mat->col; j++)
-            printf("%d ", mat->data[i][j]);
-        printf("\n");
-    }
-}
     
 /*
  * funkcja compare - porównuje obecny stan i nowy

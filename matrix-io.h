@@ -13,6 +13,6 @@ Mat* createMatrix(int row, int col);
 
 void freeMatrix(Mat *mat);
 
-void saveImage(Mat *mat);
+void writeMatrix(FILE *out, Mat *mat);
 
 #endif
