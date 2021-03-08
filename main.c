@@ -35,26 +35,20 @@ int main(int argc, char **argv) {
         snprintf(buf, 20, "/file%d.txt", i);
 	strcpy(bufor,mkd);
 	strcat(bufor,buf);
-	printf(bufor);
-	printf("\n");
         FILE *out = fopen(bufor, "w");
         mat = updateMatrix (mat);
-    	fprintf(out,"P1\n#\n%d %d\n", mat->col,mat->row);
-        writeMatrix (out, mat);
+        saveImage(out, mat);
         fclose(out);
 	bufor[0] = '\0';
     }
 	// Dodanie jednego pliku w foramcie wyjściwoym
         snprintf(buf, 20, "/file%d.txt", i);	
-	
 	strcpy(bufor,mkd);
 	strcat(bufor,buf);
-
-        printf("%s", bufor);
         FILE *out = fopen(bufor, "w");
-    	fprintf(out,"%d %d\n", mat->col,mat->row);
         writeMatrix (out, mat);
         fclose(out); 
+	freeMatrix(mat);
 	return 0;
 	
 }

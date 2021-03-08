@@ -15,4 +15,5 @@ void freeMatrix(Mat *mat);
 
 void writeMatrix(FILE *out, Mat *mat);
 
+void saveImage(FILE *out, Mat *mat);
 #endif

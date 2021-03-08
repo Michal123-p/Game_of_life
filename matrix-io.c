@@ -53,16 +53,28 @@ Mat* createMatrix(int r, int c) {
 	return mat;
 }
 
-void writeMatrix (FILE* out, Mat *mat) {
+void saveImage(FILE* out, Mat *mat) {
+    fprintf(out,"P1\n#\n%d %d\n", mat->col,mat->row);
     for (int i = 0; i < mat->row; i++) {
         for (int j = 0; j < mat->col; j++)
             fprintf(out, "%d ", mat->data[i][j]);
         fprintf(out, "\n");
     }
+}
+
+
+void writeMatrix(FILE *out, Mat *mat) {
+  fprintf(out,"%d %d\n", mat->col,mat->row); 
+  for (int i = 0; i < mat->row; i++) {
+        for (int j = 0; j < mat->col; j++)
+            fprintf(out, "%d ", mat->data[i][j]);
+        fprintf(out, "\n");
+    }
+}
     /*  Jakbym chciał wypisać na konsolę
     for (int i = 0; i < mat->row; i++) {
         for (int j = 0; j < mat->col; j++)
             printf("%d ", mat->data[i][j]);
         printf("\n");	
     }	*/
-}
+
