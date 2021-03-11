@@ -8,3 +8,8 @@ matrix-io.o: matrix-io.h
 
 test_1: automat
 	./automat test
+
+.PHONY: clean
+
+clean: 
+	-rm *.o automat
