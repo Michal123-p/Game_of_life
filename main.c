@@ -38,11 +38,11 @@ int main(int argc, char **argv) {
     //matNew = updateMatrix (mat);
     
     for(i = 0; i < n; i++) {
-        snprintf(buf, 20, "/file%d.jpg", i);
+        snprintf(buf, 20, "/file%d.pbm", i);
         strcpy(bufor,mkd);
         strcat(bufor,buf);
         
-        matNew = updateMatrix (mat);
+        matNew = updateMatrix (mat, 1);
         resultOfComparison = compare (mat, matNew);
         
         if (resultOfComparison == 1) {

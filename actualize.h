@@ -3,9 +3,9 @@
 
 #include "matrix-io.h"
 
-int countAliveCells (Mat *mat, int x, int y);
+int countAliveCells (Mat *mat, int x, int y, int type);
  
-Mat* updateMatrix (Mat *mat);
+Mat* updateMatrix (Mat *mat, int type);
 
 Mat* fixMatrix (Mat *mat);
 
