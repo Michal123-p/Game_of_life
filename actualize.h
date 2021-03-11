@@ -9,4 +9,6 @@ Mat* updateMatrix (Mat *mat);
 
 Mat* fixMatrix (Mat *mat);
 
+int compare (Mat *mat1, Mat *mat2);
+
 #endif
