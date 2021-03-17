@@ -9,6 +9,9 @@
 
 #define N 25;
 #define MAX_DIR 10000;
+#define Sasiedztwo 1;
+
+// Sasiedztwo = 1 to sasiedztwo Morea, Sasiedztwo = 0 to sasiedztwo von Neumana
 
 int main(int argc, char **argv) {
     
@@ -21,7 +24,10 @@ int main(int argc, char **argv) {
     int dir = -1;
     int max = MAX_DIR;
     int n = argc > 2 ? atoi(argv[2]) : N;
-    
+    int sasiedztwo = argc > 3 ? atoi(argv[3]) : Sasiedztwo;
+    if (sasiedztwo != 1 && sasiedztwo !=0 ) {
+	printf("Sasiedztwo powinno wynosić 1 lub 0 a wynosi: %d \n", sasiedztwo);
+	return -1;}
     char buf[20];
     char mkd[20];
     char bufor[40];
@@ -42,7 +48,7 @@ int main(int argc, char **argv) {
         strcpy(bufor,mkd);
         strcat(bufor,buf);
         
-        matNew = updateMatrix (mat, 1);
+        matNew = updateMatrix (mat, sasiedztwo);
         resultOfComparison = compare (mat, matNew);
         
         if (resultOfComparison == 1) {
