@@ -1,7 +1,4 @@
-#include <stdio.h>
 #include "actualize.h"
-#include "matrix-io.h"
-#include <stdio.h>
 
 /* stany:
  0 - martwa
@@ -75,19 +72,4 @@ Mat* fixMatrix (Mat *mat) {
                 mat->data[i][j] = 0;
         }
     return mat;
-}
- 
-int compare (Mat *mat1, Mat *mat2) {
-    int sumTheSame = 0;
-    int numberOfAllCells = mat1 -> col * mat1 -> row;
-    
-    for (int i = 0; i < mat1 -> row; i++)
-            for (int j = 0; j < mat1 -> col; j++)
-                if (mat2 -> data[i][j] == mat1 -> data[i][j])
-                    sumTheSame++;
-    
-    if (sumTheSame == numberOfAllCells)
-        return 1;
-    
-    return 0;
 }

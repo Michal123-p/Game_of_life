@@ -1,11 +1,14 @@
 #include <stdlib.h>
-#include <stdio.h>
+
 #include "matrix-io.h"
+
+//wczytanie macierzy
+//zapisanie macierzy do pliku
 
 Mat* readFromFile( char *filename) {
 
-	// row to wiersze, col to kolumny, i to iteratory po kolumnach i wierszach
-	// Oczekuje wartości int.
+	// row to wiersze, col to kolumny, rowi, coli to iteratory po kolumnach i wierszach
+
 	int row = 0, col = 0;
 	int rowi, coli;
 	FILE *in = fopen(filename, "r");
@@ -31,28 +34,7 @@ Mat* readFromFile( char *filename) {
 	return mat;
 }
 
-void freeMatrix(Mat *mat) {
-	int i;
-	for(i=0; i< mat->row; i++)
-		free(mat->data[i]);
-	free(mat->data);
-	free(mat);
-}
-
-Mat* createMatrix(int r, int c) {
-	int i;
-	Mat *mat = (Mat*) malloc(sizeof(Mat));
-	if(mat != NULL) {
-	    mat->row = r;
-	    mat->col = c;
-	    mat->data = (int**) malloc(sizeof(int*) * r);
-	    for(i=0; i<r;i++) {
-		mat->data[i] = (int*) malloc(sizeof(int) * c);
-		}
-	    }
-	return mat;
-}
-
+// dla wypisania w formacie .pbm
 void saveImage(FILE* out, Mat *mat) {
     fprintf(out,"P1\n#\n%d %d\n", mat->col,mat->row);
     for (int i = 0; i < mat->row; i++) {
@@ -62,7 +44,7 @@ void saveImage(FILE* out, Mat *mat) {
     }
 }
 
-
+// dla wypisania w formacie .txt
 void writeMatrix(FILE *out, Mat *mat) {
   fprintf(out,"%d %d\n", mat->col,mat->row); 
   for (int i = 0; i < mat->row; i++) {
@@ -71,10 +53,4 @@ void writeMatrix(FILE *out, Mat *mat) {
         fprintf(out, "\n");
     }
 }
-    /*  Jakbym chciał wypisać na konsolę
-    for (int i = 0; i < mat->row; i++) {
-        for (int j = 0; j < mat->col; j++)
-            printf("%d ", mat->data[i][j]);
-        printf("\n");	
-    }	*/
 
