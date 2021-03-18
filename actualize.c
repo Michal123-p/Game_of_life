@@ -17,23 +17,28 @@ int countAliveCells (Mat *mat, int x, int y, int type) {  // x i y to współrz�
 					sumAlive++;
         }
 	else	{     
-	int i = x-1;
+	int i = x;
 	int j = y;
+
+	i = x + 1;
+	j = y;
 	if ( (i >= 0 && i < mat->row) && (j >= 0 && j < mat->col))
                                 if(mat->data[i][j] == 1 || mat->data[i][j] == 3 )   // króra  tym momencie jest żywa
                                         sumAlive++;
 
-        i+=2;
+      	i = x - 1;
+	j = y;	
         if ( (i >= 0 && i < mat->row) && (j >= 0 && j < mat->col))
                                 if(mat->data[i][j] == 1 || mat->data[i][j] == 3 )   // króra  tym momencie jest żywa
                                         sumAlive++;
 
-	i-=1;
-        j+=1;
+	i = x;
+        j = y - 1;
         if ( (i >= 0 && i < mat->row) && (j >= 0 && j < mat->col))
                                 if(mat->data[i][j] == 1 || mat->data[i][j] == 3 )   // króra  tym momencie jest żywa
                                         sumAlive++;
-        j +=2;
+        i = x;
+	j = y + 1;
         if ( (i >= 0 && i < mat->row) && (j >= 0 && j < mat->col))
                                 if(mat->data[i][j] == 1 || mat->data[i][j] == 3 )   // króra  tym momencie jest żywa
                                         sumAlive++;	
