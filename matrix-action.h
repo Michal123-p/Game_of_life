@@ -1,5 +1,5 @@
-#ifndef _MATRIX-ACTION_H
-#define _MATRIX-ACTION_H
+#ifndef _MATRIX_ACTION_H
+#define _MATRIX_ACTION_H
 
 #include <stdio.h>
 
