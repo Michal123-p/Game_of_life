@@ -1,0 +1,25 @@
+typedef struct Matrix {
+    int row,col;
+    int **data;
+
+} Mat;
+
+Mat* createMatrix(int r, int c);
+
+void freeMatrix(Mat *mat);
+
+int compare (Mat *mat1, Mat *mat2);
+
+
+Mat *readFromFile(char *filename);
+
+void writeMatrix(FILE *out, Mat *mat);
+
+void saveImage(FILE *out, Mat *mat);
+
+
+int countAliveCells (Mat *mat, int x, int y, int type);
+ 
+Mat* updateMatrix (Mat *mat, int type);
+
+Mat* fixMatrix (Mat *mat);
