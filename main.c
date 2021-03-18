@@ -5,6 +5,7 @@
 
 #include "matrix-io.h"
 #include "actualize.h"
+#include "matrix-action.h"
 
 
 #define N 25;
@@ -25,13 +26,16 @@ int main(int argc, char **argv) {
     int max = MAX_DIR;
     int n = argc > 2 ? atoi(argv[2]) : N;
     int sasiedztwo = argc > 3 ? atoi(argv[3]) : Sasiedztwo;
-    if (sasiedztwo != 1 && sasiedztwo !=0 ) {
-	printf("Sasiedztwo powinno wynosić 1 lub 0 a wynosi: %d \n", sasiedztwo);
-	return -1;}
+    
+    if (sasiedztwo != 1 && sasiedztwo != 0 ) {
+        printf("Sasiedztwo powinno wynosić 1 lub 0 a wynosi: %d \n", sasiedztwo);
+        return -1;
+    }
     char buf[20];
     char mkd[20];
     char bufor[40];
     
+    //tworzenie niepowrarzalnych nazw folderów
     for(i = 0; i < max; i++) {
         snprintf(mkd, 20, "folder%d", i);
         dir = mkdir(mkd, 0777);
@@ -41,20 +45,19 @@ int main(int argc, char **argv) {
     
     Mat *matNew = createMatrix(mat -> row,  mat -> col);
     int resultOfComparison = 0;
-    //matNew = updateMatrix (mat);
     
     for(i = 0; i < n; i++) {
         snprintf(buf, 20, "/file%d.pbm", i);
+        //snprintf(buf, 20, "/file%d.jpg", i); - dla zrobienia gif
         strcpy(bufor,mkd);
         strcat(bufor,buf);
         
         matNew = updateMatrix (mat, sasiedztwo);
-        resultOfComparison = compare (mat, matNew);
         
-        if (resultOfComparison == 1) {
-            //printf("Niepowtarzających się znaczeń: %d \n", i);
+        // dla gererowania niepowtarzających się plików używamy funkcji compare
+        resultOfComparison = compare (mat, matNew);
+        if (resultOfComparison == 1)
             break;
-        }
         else
             mat = matNew;
         
